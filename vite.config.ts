@@ -8,9 +8,10 @@ import { defineConfig } from "vite";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: ' /shop-vegetables',
   test: {
     globals: true,
     environment: "jsdom",
+    setupFiles: ['./src/setupTests.ts']
   },
+  base: '/shop-vegetables',
 })

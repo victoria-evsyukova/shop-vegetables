@@ -1,3 +1,3 @@
 
 # shop-vegetables
-https://github.com/victoria-evsyukova.github.io/shop-vegetables/
+https://victoria-evsyukova.github.io/shop-vegetables/

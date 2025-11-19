@@ -39,13 +39,14 @@ export default function ModalBusket({ opened, onClose }: ModalType) {
 
     return (
         <Modal
-            // role="dialog"
-            // data-testid="modal"
+            role="dialog"
+            data-testid="modal"
             size={getModalSize()}
             opened={opened}
             onClose={onClose}
             closeOnClickOutside={true}
             closeOnEscape={true}
+            centered={false}
             withCloseButton={false}
             lockScroll={false}
             
@@ -58,8 +59,9 @@ export default function ModalBusket({ opened, onClose }: ModalType) {
                 body: style['modal-busket-body']
             }}
 
-        >   
-            <Stack p={10}> 
+        >
+        
+        <Stack p={10}> 
                 {cartItemsKeys.length === 0 ? (
                     <>
                         <Stack w={117} h={107}  m={'0 auto'} mt={'10px'}>
@@ -133,5 +135,6 @@ export default function ModalBusket({ opened, onClose }: ModalType) {
                 )}
         </Stack>
     </Modal>
-  );
+
+    );
 }

@@ -6,13 +6,13 @@ import Header from './header/Header';
 
 
 export default function Page() {
-  const [ modalBusket, setmodalBusket ] = useState(false);
+  const [ modalBusket, setModalBusket ] = useState(false);
 
   const handleClickBusket = () => {
-    setmodalBusket(true);
+    setModalBusket(true);
   } 
   const handleCloseModalBusket = () => {
-    setmodalBusket(false);
+    setModalBusket(false);
   } 
 
 
@@ -25,7 +25,6 @@ export default function Page() {
       <Catalog 
         modalBusket={modalBusket}
         onCloseModal={handleCloseModalBusket} />
-
     </>
   );
 }

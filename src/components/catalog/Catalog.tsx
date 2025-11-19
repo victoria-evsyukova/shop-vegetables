@@ -2,7 +2,7 @@ import ky from "ky";
 import { useEffect, useState } from "react";
 import { Container, Title, Grid, Flex, Loader } from '@mantine/core';
 import Card from "../card/Card";
-import ModalBusket from '../modalBusket/ModalBusket';
+import ModalBusket from "../modalBusket/ModalBusket";
 
 
 export type CatalogType = {
@@ -55,7 +55,7 @@ export default function Catalog ({ modalBusket, onCloseModal }: ModalBusketType)
 
 
   return (
-    <Container size={'1440px'} bg='#F3F5FA' p={80} pos={'relative'}>
+    <Container size={'1440px'} bg='#F3F5FA' p={80}>
 
       <Title c='#000000' size={32} fw={600} mt={50} mb={45}>
         Catalog
@@ -73,7 +73,7 @@ export default function Catalog ({ modalBusket, onCloseModal }: ModalBusketType)
       {modalBusket && 
         <ModalBusket
           opened={modalBusket}
-          onClose={() => onCloseModal()}
+          onClose={onCloseModal}
         ></ModalBusket>}
         
       </Container>

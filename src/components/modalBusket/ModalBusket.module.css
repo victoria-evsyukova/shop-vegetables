@@ -1,0 +1,23 @@
+
+
+.modal-busket-content {
+    && {
+        border-radius: 16px;
+        margin-left: auto;
+        margin-top: 20px;
+        max-height: 600px;
+        height: fit-content;
+        max-width: 1440px;
+    }
+
+}
+
+
+.modal-busket-body {
+    && {
+        scrollbar-width: none;
+        overflow: hidden;
+        height: 100%;
+    }
+    
+}

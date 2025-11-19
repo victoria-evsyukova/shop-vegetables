@@ -1,0 +1,18 @@
+
+.header {
+    position:sticky;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #FFFFFF;
+    width: 1440px;
+    height: 59px;
+    margin: 0 auto;
+    padding: 8px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+

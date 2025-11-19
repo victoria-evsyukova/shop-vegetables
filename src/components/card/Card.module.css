@@ -1,0 +1,23 @@
+
+
+
+.counter-button:disabled {
+    background-color: #DEE2E6 !important;
+    color: #ADB5BD !important;
+}
+
+.button-add-to-cart {
+    && {
+        background-color: #E7FAEB;
+        color: #38944E;
+        transition: all 0.4s ease;
+    }
+
+}
+
+.button-add-to-cart:hover {
+    && {
+        background-color: #54B46A !important;
+        color: #ffffff;
+    } 
+}

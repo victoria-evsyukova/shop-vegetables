@@ -10,7 +10,8 @@ import {
 } from '@mantine/core';
 import { IconPlus, IconMinus, IconShoppingCart } from '@tabler/icons-react';
 import style from './Card.module.css'
-import { useCart } from '../CartContext'
+import { useCart } from '../../context/CartContext'
+
 
 type Product = {
   id: number;
@@ -33,10 +34,11 @@ export default function Card({ product }: CardProps) {
 
   const handleIncrement = () => setQuantity(prev => prev + 1);
   const handleDecrement = () => setQuantity(prev => Math.max(1, prev - 1));
-
+ 
 
   const handleAddToCart = () => {
-    addToCart(product.id, quantity, product)
+    addToCart(product.id, quantity, product);
+    setQuantity(1);
   };
 
   return (

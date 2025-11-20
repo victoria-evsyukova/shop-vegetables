@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Catalog from './catalog/Catalog';
+import Catalog from '../widgets/catalog/Catalog';
 
-import Header from './header/Header';
+import Header from '../widgets/header/Header';
 
 
 

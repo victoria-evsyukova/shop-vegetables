@@ -1,8 +1,8 @@
 import { Stack, Text, Image, Flex, ActionIcon, Modal } from '@mantine/core';
 import { IconMinus, IconPlus } from '@tabler/icons-react';
-import busketEmpty from '../../img/cart_empty.png'
+import busketEmpty from '../../assets/img/cart_empty.png'
 import style from './ModalBusket.module.css'
-import { useCart } from '../CartContext'
+import { useCart } from '../../context/CartContext'
 
 type ModalType = {
     opened: boolean
@@ -10,30 +10,18 @@ type ModalType = {
 } 
 
 export default function ModalBusket({ opened, onClose }: ModalType) {
-    const { cartItems, updateCart, removeFromCart } = useCart();
-
-    const cartItemsKeys = Object.keys(cartItems);
-    const cartItemsValues = Object.values(cartItems);
+    const { cartItems, handleDecrementInBusket, handleIncrementInBusket } = useCart();
 
 
-    const handleIncrement = (id: number, quantity: number) => {
-        updateCart(id, quantity + 1)
-    }
+    const isCartEmpty = cartItems.length === 0; 
 
-    const handleDecrement = (id: number, quantity: number) => {
-        if (quantity > 1) {
-            updateCart(id, quantity - 1)
-        } else {
-            removeFromCart(id)
-        }
-    }
     
     const calculateTotal = () => {
-        return cartItemsValues.reduce((sum, item) => sum + (item.price * item.quantity), 0)
+        return cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0)
     }
 
     const getModalSize = () => {
-        if (cartItemsKeys.length === 0) return 'xs';
+        if (cartItems.length === 0) return 'xs';
     };
 
 
@@ -62,7 +50,7 @@ export default function ModalBusket({ opened, onClose }: ModalType) {
         >
         
         <Stack p={10}> 
-                {cartItemsKeys.length === 0 ? (
+                {isCartEmpty ? (
                     <>
                         <Stack w={117} h={107}  m={'0 auto'} mt={'10px'}>
                             <Image
@@ -76,7 +64,7 @@ export default function ModalBusket({ opened, onClose }: ModalType) {
                     </>
                 ) : ( 
                     <>
-                        {cartItemsValues.map((item, index) => (
+                        {cartItems.map((item, index) => (
                             <Flex key={item.id} gap={'md'}>
                                 <Stack w={64} h={64}>
                                     <Image
@@ -87,7 +75,7 @@ export default function ModalBusket({ opened, onClose }: ModalType) {
                                         radius="md"
                                     /> 
                                 </Stack>
-                                <Stack w={'100%'} style={{ borderBottom: index !== cartItemsKeys.length - 1 ? '1px solid #e9ecef': 'none'}} pb={10}>
+                                <Stack w={'100%'} style={{ borderBottom: index !== cartItems.length - 1 ? '1px solid #e9ecef': 'none'}} pb={10}>
                                     <Flex align={'center'} columnGap={8}>
                                         <Text size={'18px'} fw={600}>{item.name.split(' ')[0]}</Text>
                                         <Text size={'12px'} fw={600} c={'#868E96'} ff={'Open Sans'}>{item.name.split(' ').slice(2, 4).join(' ')}</Text>
@@ -101,7 +89,7 @@ export default function ModalBusket({ opened, onClose }: ModalType) {
                                         <Flex justify={'end'}>
                                             <ActionIcon bg={"#DEE2E6"} c={'black'} bdrs={8}
                                                 size="md"
-                                                onClick={() => handleDecrement(item.id, item.quantity)}
+                                                onClick={() => handleDecrementInBusket(item.id, item.quantity)}
                                             >
                                                 <IconMinus size={16} />
                                             </ActionIcon>
@@ -112,7 +100,7 @@ export default function ModalBusket({ opened, onClose }: ModalType) {
                                             
                                             <ActionIcon bg={"#DEE2E6"} c={'black'} bdrs={8}
                                                 size="md"
-                                                onClick={() => handleIncrement(item.id, item.quantity)}
+                                                onClick={() => handleIncrementInBusket(item.id, item.quantity)}
                                             >
                                                 <IconPlus size={16} />
                                             </ActionIcon>

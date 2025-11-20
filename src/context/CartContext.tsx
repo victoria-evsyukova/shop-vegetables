@@ -16,11 +16,13 @@ interface CartItem extends Product {
 
 type ContextType = {
     addToCart: (productId: number, quantity: number, product: Product) => void
-    totalCount?: number 
+    totalCount: number 
     removeFromCart: (productId: number) => void
     updateCart: (productId: number, newQuantity: number) => void
-    cartItems: { [key: number]: CartItem };
-}
+    cartItems: CartItem[];
+    handleIncrementInBusket: (id: number, quantity: number) => void
+    handleDecrementInBusket: (id: number, quantity: number) => void
+} 
 
 
 const CartContext = createContext<ContextType | null>(null)
@@ -30,8 +32,9 @@ type CardProviderType = {
 }
 
 export default function CartProvider ({ children }: CardProviderType) {
-    const [ cartItems, setCartItems ] = useState<CartItem[]>([])
-    const [ totalCount, setTotalCount ] = useState(0)
+    const [ cartItems, setCartItems ] = useState<CartItem[]>([]);
+
+    const totalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0)
     
 
     const addToCart = (productId: number, quantity: number, product: Product) => {
@@ -49,31 +52,43 @@ export default function CartProvider ({ children }: CardProviderType) {
 
         return [...prev, {...product, quantity}];
         });
-
-        setTotalCount(prev => prev + quantity);
     };
 
     const updateCart = (productId: number, newqQuantity: number) => {
         setCartItems(prev => {
-        return prev.map(item =>
-            item.id === productId ? { ...item, quantity: newqQuantity } : item
-        );
+            return prev.map(item =>
+                item.id === productId ? { ...item, quantity: newqQuantity } : item
+            );
         });
     };
 
     const removeFromCart = (productId: number) => {
         setCartItems(prev => {
-        const itemToRemove = prev.find(item => item.id === productId);
-        if (itemToRemove) {
-            setTotalCount(prev => prev - (itemToRemove.quantity || 0));
-        }
-        return prev.filter(item => item.id !== productId);
+            return prev.filter(item => item.id !== productId);
         });
     };
 
+    const handleIncrementInBusket = (id: number, quantity: number) => {
+        updateCart(id, quantity + 1)
+    }
+
+    const handleDecrementInBusket = (id: number, quantity: number) => {
+        if (quantity > 1) {
+            updateCart(id, quantity - 1)
+        } else {
+            removeFromCart(id)
+        }
+    }
+
 
     const contextValue: ContextType = {
-        addToCart, updateCart, removeFromCart, totalCount, cartItems
+        addToCart, 
+        updateCart, 
+        removeFromCart, 
+        totalCount, 
+        cartItems, 
+        handleIncrementInBusket, 
+        handleDecrementInBusket 
     }
 
     return (

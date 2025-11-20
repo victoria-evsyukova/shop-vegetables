@@ -1,9 +1,10 @@
 import './App.css';
 import '@mantine/core/styles.css'
-import Page from './components/Page'
+import Page from '../pages/Page'
 import { MantineProvider } from '@mantine/core';
-import { theme } from './theme';
-import CartProvider from './components/CartContext';
+import { theme } from '../theme';
+import CartProvider from '../context/CartContext';
+
 
 function App() {
 

@@ -1,14 +1,14 @@
 import { Group, Text, Button } from '@mantine/core';
 import style from './Header.module.css'
-import { useCart } from '../CartContext'
-import CardButton from '../CardButton';
+import { useCart } from '../../context/CartContext'
+import CardButton from '../../features/CardButton';
 
 type HeaderType = {
     onClick: () => void
 }
 
 export default function Header({ onClick }: HeaderType) {
-  const { totalCount } = useCart();
+
 
 
   return (
@@ -25,7 +25,6 @@ export default function Header({ onClick }: HeaderType) {
         </Group>
 
         <CardButton
-          totalCount={totalCount}
           onClick={onClick}
         />
         

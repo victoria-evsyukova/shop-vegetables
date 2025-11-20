@@ -1,8 +1,8 @@
 import { screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import Header from '../../components/header/Header';
-import CartProvider from '../CartContext';
+import Header from './Header';
+import CartProvider from '../../context/CartContext';
 import { render } from "../../test/utils";
 
 

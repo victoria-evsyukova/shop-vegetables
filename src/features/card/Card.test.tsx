@@ -1,9 +1,9 @@
 import { fireEvent, screen } from '@testing-library/react'
 import '@testing-library/jest-dom';
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import Card from '../card/Card';
+import Card from './Card';
 import { render, renderWithoutCartProvider } from "../../test/utils";
-import CartProvider from '../CartContext';
+import CartProvider from '../../context/CartContext';
 
 const mockProduct = {
   id: 1,

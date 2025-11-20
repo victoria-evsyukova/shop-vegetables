@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { describe, it, expect, vi } from 'vitest';
 import ModalBusket from './ModalBusket';
-import CartProvider from '../CartContext';
+import CartProvider from '../../context/CartContext';
 import { render } from "../../test/utils";
 
 
